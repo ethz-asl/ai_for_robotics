@@ -31,15 +31,11 @@ validation_output = output_data[idx_switch:, :]
 
 # Fit model
 lm = model.LinearRegressionModel()
-lm.set_feature_vector([features.LinearX1(), features.LinearX2(),
-                        features.SquareX1(), features.ExpX2(),
-                        features.LogX1(), features.Identity()])
+lm.set_feature_vector([features.LinearX1(), #TODO ])
 lm.fit(training_input, training_output)
 
 # sklearn
-linear_regression_sk = LinearRegression()
-feature_matrix = lm.compute_feature_matrix(training_input)
-linear_regression_sk.fit(feature_matrix, training_output)
+#TODO
 
 # Validation
 mse = lm.validate(validation_input, validation_output)
@@ -66,8 +62,8 @@ ax.scatter(validation_input[:, 0], validation_input[:, 1],
            validation_output, alpha=0.5, c='b')
 ax.scatter(validation_input[:, 0], validation_input[:, 1],
            validation_predictions, alpha=0.5, c='r')
-ax.scatter(validation_input[:, 0], validation_input[:, 1],
-           validation_predictions_sk, alpha=0.5, c='g')
+# ax.scatter(validation_input[:, 0], validation_input[:, 1],
+#            validation_predictions_sk, alpha=0.5, c='g')
 ax.set_xlabel('x1')
 ax.set_ylabel('x2')
 ax.set_zlabel('y')
