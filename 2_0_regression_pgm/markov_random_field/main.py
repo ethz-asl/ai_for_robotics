@@ -24,6 +24,7 @@ image_segmentation1 = MarkovRandomField.ImageSegmenter(
     beta, threshold, max_iterations, temperature_init, discount,
     number_of_labels, size_ratio, features1, image1)
 result1 = image_segmentation1.segmentImage()
+pkl.dump(result1, open("result_mrf_1.pkl", 'wb'))
 
 # TODO: Tune the parameters
 beta = 1  # strength of the second order clique criteria
@@ -39,3 +40,4 @@ image_segmentation2 = MarkovRandomField.ImageSegmenter(
     beta, threshold, max_iterations, temperature_init, discount,
     number_of_labels, size_ratio, features2, image2)
 result2 = image_segmentation2.segmentImage()
+pkl.dump(result2, open("result_mrf_2.pkl", 'wb'))
