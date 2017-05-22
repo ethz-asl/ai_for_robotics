@@ -20,7 +20,7 @@ The reference solution is computed using [1] but many different approaches lead 
 ### II.1
 Score computed based on transformation (translation and rotation) error (linear):
 ```
-error(student) >= error(inital_transformation) = 0.0; error(student) = error(ground_truth)
+error(student) >= error(initial_transformation) = 0.0; error(student) = error(ground_truth)
 ```
 
 ### II.2
@@ -29,5 +29,5 @@ Score computed based on transformation (translation and rotation) error (linear)
 error(student) >= (7.5) = 0.0; error(student) <= (2.0)
 ```
 The reference solution is computed using ICP but many different approaches lead to good results.
-
+A relatively high error was tolerated since there is no unique point-to-point mapping.
 
