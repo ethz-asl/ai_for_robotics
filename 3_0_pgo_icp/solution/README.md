@@ -5,13 +5,15 @@ Weighted as follows: I.1 (0.4), I.2 (0.1), II.1 (0.4), II.2 (0.1)
 ### I.1
 Score computed based on RMSE (linear): 
 ```
-RMSE(student) >= RMSE(odometry) = 0.0; RMSE(student) <= RMSE(reference_optimizer) = 100
+RMSE(student) >= RMSE(odometry): score = 0.0
+RMSE(student) <= RMSE(reference_optimizer): score = 100
 ```
 
 ### I.2
 Score computed based on RMSE (linear): 
 ```
-RMSE(student) >= RMSE(odometry) = 0.0; RMSE(student) <= RMSE(reference_optimizer_olsen) = 100
+RMSE(student) >= RMSE(odometry): score = 0.0
+RMSE(student) <= RMSE(reference_optimizer_olsen): score = 100
 ```
 The reference solution is computed using [1] but many different approaches lead to good results.
 
@@ -20,13 +22,15 @@ The reference solution is computed using [1] but many different approaches lead 
 ### II.1
 Score computed based on transformation (translation and rotation) error (linear):
 ```
-error(student) >= error(initial_transformation) = 0.0; error(student) = error(ground_truth)
+error(student) >= error(initial_transformation): score = 0.0
+error(student) = error(ground_truth): score = 100.0
 ```
 
 ### II.2
 Score computed based on transformation (translation and rotation) error (linear):
 ```
-error(student) >= (7.0) = 0.0; error(student) <= (2.9)
+error(student) >= (7.0): score = 0.0
+error(student) <= (2.9): score = 100.0
 ```
 The reference solution is computed using ICP but many different approaches lead to good results.
 A relatively high error was tolerated since there is no unique point-to-point mapping.
