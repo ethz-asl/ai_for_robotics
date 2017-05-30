@@ -11,3 +11,5 @@ The documentation of SciPy can be found here: http://scipy-cookbook.readthedocs.
 * **1\_0\_probability\_ml\_basics**: Probability recap and machine learning basics
 * **2\_0\_regression\_pgm**: Regression and probabilistic graphical models
 * **3\_0\_pgo\_icp**: Pose graph optimization and iterative closest point
+* **4\_0\_pca\_kmeans\_svm**: Principal Component Analysis (PCA), k-means clustering, Support Vector Machine (SVM).
+* **5\_deep\_learning**: Backpropagation, Convolutional Neural Networks (CNNs), Deep Reinforcement Learning (RL).
