@@ -74,8 +74,11 @@ def main():
     #np.savetxt('synthetic_source.xyz', pcl_a, delimiter=' ')
     #np.savetxt('synthetic_target.xyz', pcl_b, delimiter=' ')
 
-    pcl_a = np.genfromtxt(open("synthetic_source.xyz"))
-    pcl_b = np.genfromtxt(open("synthetic_target.xyz"))
+    # Relative path to data from exercise sheet.
+    base = "../../../iterative_closest_point/assignment_II_1/"
+
+    pcl_a = np.genfromtxt(open(base + "synthetic_source.xyz"))
+    pcl_b = np.genfromtxt(open(base + "synthetic_target.xyz"))
 
     A = pcl_a
     B = pcl_b
