@@ -97,7 +97,7 @@ def main():
     previous_mean_error = 1.0e12
     for iter in range(0, iter_max):
 
-        # Downsampling of the source cloud:
+        # Downsampling/Filtering of the source cloud:
         # REMARK: There are many possible approaches to deal with large point-clouds.
         # Usually the space is divided into cells in which every cell only
         # allows a maximum number of points. The nearest neighbor search is
@@ -105,9 +105,8 @@ def main():
         # In this example, we simply select N random points from the source
         # point-cloud, chaning the selection in every iteration.
 
-        # Select subset of source to compute transformation
+        # Select 5000 samples from soure cloud (without placing back).
         source_filtered = source.T
-        # Select 5000 samples from soure clud (without placing back).
         source_filtered = source_filtered[np.random.choice(source_filtered.shape[0], 5000, replace=False)]
         source_filtered = source_filtered.T
 
