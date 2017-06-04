@@ -163,7 +163,10 @@ class PoseGraphOptimization1D():
 
 
 def main():
-    input_data = np.genfromtxt(open("data.txt"))
+    # Relative path to data from exercise sheet.
+    base = "../../../pose_graph_optimization/assignment_I_1/"
+
+    input_data = np.genfromtxt(open(base + "data_1D.txt"))
     num_measurements = input_data.shape[0]
     print "Number of rows: ", num_measurements
 
