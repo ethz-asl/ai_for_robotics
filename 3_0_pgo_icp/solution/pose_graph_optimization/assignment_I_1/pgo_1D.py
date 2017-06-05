@@ -44,6 +44,7 @@ class PoseGraphOptimization1D():
         self.x = np.zeros([num_nodes, 1])
         self.constraints = []
         self.num_nodes = num_nodes
+        self.dimensions = 1
 
     #    i:  index of the i'th node
     #    j:  index of the j'th node
@@ -137,11 +138,12 @@ class PoseGraphOptimization1D():
                 H[j,i] += np.dot(B_ij, np.dot(Omega_ij, A_ij))
                 H[j,j] += np.dot(B_ij, np.dot(Omega_ij, B_ij))
 
-            # Sparse Cholesky Factorization
-            lu = sla.splu(H)
-            Delta_x = lu.solve(b)
-            # Update the state estimates
-            self.x -= Delta_x
+            # Solve the linear system.
+            delta_x = sla.spsolve(H, -b)
+            delta_x = delta_x.reshape(self.num_nodes, self.dimensions)
+
+            # Update the states by applying the increments.
+            self.x += delta_x
 
         k = np.arange(0, self.num_nodes, 1)
         gt = np.array([0.0,1.0,2.0,3.0,0.0])
