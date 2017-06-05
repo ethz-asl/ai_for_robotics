@@ -127,7 +127,7 @@ def main():
 
     T_final = computeBestTransformation(A, source[0:3,:].T)
     print "Final transformation: ", T_final
-    np.savetxt('results_synthetic.txt', T_final)
+    np.savetxt('results_alignment_synthetic.txt', T_final)
 
 if __name__ == "__main__":
     main()
