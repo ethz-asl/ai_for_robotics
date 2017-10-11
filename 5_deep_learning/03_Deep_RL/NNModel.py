@@ -10,9 +10,9 @@ import tensorflow as tf
 import numpy as np
 
 class NNModel():
-  '''
+  """
   NN model for reinforcement learning that maps from state to action probabilities
-  '''
+  """
   
   def __init__(self, learning_rate=0.01):
     self.input_dim = 4 # physical state of the system [cart position, cart velocity, pole angle, pole rotational velocity]

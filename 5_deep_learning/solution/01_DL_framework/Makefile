@@ -22,15 +22,14 @@ run_tests:
 
 clean:
 	rm -rf *.pyc && rm -rf *~
-	
+
 clean_models:
 	rm -rf models
-	
+
 clean_data:
 	rm -rf data
 
 distclean:
-	$(MAKE) clean 
+	$(MAKE) clean
 	$(MAKE) clean_models
 	$(MAKE) clean_data
-

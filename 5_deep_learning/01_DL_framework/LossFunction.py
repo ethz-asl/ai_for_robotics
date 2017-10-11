@@ -11,9 +11,9 @@ import numpy as np
 from abc import ABCMeta, abstractmethod
 
 class LossFunction():
-  '''
+  """
   Loss function base class.
-  '''
+  """
   __metaClass__ = ABCMeta
 
   @abstractmethod
@@ -26,9 +26,9 @@ class LossFunction():
 
 
 class SquaredErrorFunction(LossFunction):
-  '''
+  """
   Squared error loss function.
-  '''
+  """
   def evaluate(self, y, y_target):
     return 0.5 * np.sum(np.dot((y_target - y), (y_target - y).T))
 

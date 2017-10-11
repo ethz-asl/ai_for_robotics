@@ -18,25 +18,31 @@ from IPython import embed
 DEST_DIRECTORY = "/tmp/cifar10_data"
 DATA_URL = 'http://www.cs.toronto.edu/~kriz/cifar-10-python.tar.gz'
 
+
 def maybe_download_and_extract():
-  """Download and extract the tarball from Alex's website."""
-  if not os.path.exists(DEST_DIRECTORY):
-    os.makedirs(DEST_DIRECTORY)
-  filename = DATA_URL.split('/')[-1]
-  filepath = os.path.join(DEST_DIRECTORY, filename)
-  if not os.path.exists(filepath):
-    def _progress(count, block_size, total_size):
-      sys.stdout.write('\r>> Downloading %s %.1f%%' % (filename,
-          float(count * block_size) / float(total_size) * 100.0))
-      sys.stdout.flush()
-    filepath, _ = urllib.request.urlretrieve(DATA_URL, filepath, _progress)
-    print()
-    statinfo = os.stat(filepath)
-    print('Successfully downloaded', filename, statinfo.st_size, 'bytes.')
-  extracted_dir_path = os.path.join(DEST_DIRECTORY, 'cifar-10-batches-bin')
-  if not os.path.exists(extracted_dir_path):
-    tarfile.open(filepath, 'r:gz').extractall(DEST_DIRECTORY)
-    
+    """Download and extract the tarball from Alex's website."""
+    if not os.path.exists(DEST_DIRECTORY):
+        os.makedirs(DEST_DIRECTORY)
+    filename = DATA_URL.split('/')[-1]
+    filepath = os.path.join(DEST_DIRECTORY, filename)
+    if not os.path.exists(filepath):
+
+        def _progress(count, block_size, total_size):
+            sys.stdout.write(
+                '\r>> Downloading %s %.1f%%' %
+                (filename,
+                 float(count * block_size) / float(total_size) * 100.0))
+            sys.stdout.flush()
+
+        filepath, _ = urllib.request.urlretrieve(DATA_URL, filepath, _progress)
+        print()
+        statinfo = os.stat(filepath)
+        print('Successfully downloaded', filename, statinfo.st_size, 'bytes.')
+    extracted_dir_path = os.path.join(DEST_DIRECTORY, 'cifar-10-batches-bin')
+    if not os.path.exists(extracted_dir_path):
+        tarfile.open(filepath, 'r:gz').extractall(DEST_DIRECTORY)
+
+
 ########################################################################
 # Various constants for the size of the images.
 # Use these constants in your own program.
@@ -146,6 +152,7 @@ def _load_data(filename):
 # Public functions that you may call to download the data-set from
 # the internet and load the data into memory.
 
+
 def load_class_names():
     """
     Load the names for the classes in the CIFAR-10 data-set.
@@ -161,6 +168,7 @@ def load_class_names():
     names = [x.decode('utf-8') for x in raw]
 
     return names
+
 
 def one_hot_encoded(class_numbers, num_classes=None):
     """
@@ -186,6 +194,7 @@ def one_hot_encoded(class_numbers, num_classes=None):
 
     return np.eye(num_classes, dtype=float)[class_numbers]
 
+
 def load_training_data():
     """
     Load all the training-data for the CIFAR-10 data-set.
@@ -196,7 +205,9 @@ def load_training_data():
     """
 
     # Pre-allocate the arrays for the images and class-numbers for efficiency.
-    images = np.zeros(shape=[_num_images_train, img_width, img_height, num_channels], dtype=float)
+    images = np.zeros(
+        shape=[_num_images_train, img_width, img_height, num_channels],
+        dtype=float)
     cls = np.zeros(shape=[_num_images_train], dtype=int)
 
     # Begin-index for the current batch.
@@ -205,7 +216,8 @@ def load_training_data():
     # For each data-file.
     for i in range(_num_files_train):
         # Load the images and class-numbers from the data-file.
-        images_batch, cls_batch = _load_data(filename="data_batch_" + str(i + 1))
+        images_batch, cls_batch = _load_data(
+            filename="data_batch_" + str(i + 1))
 
         # Number of images in this batch.
         num_images = len(images_batch)
@@ -222,7 +234,8 @@ def load_training_data():
         # The begin-index for the next batch is the current end-index.
         begin = end
 
-    return images, cls, one_hot_encoded(class_numbers=cls, num_classes=num_classes)
+    return images, cls, one_hot_encoded(
+        class_numbers=cls, num_classes=num_classes)
 
 
 def load_test_data():
@@ -234,10 +247,13 @@ def load_test_data():
 
     images, cls = _load_data(filename="test_batch")
 
-    return images, cls, one_hot_encoded(class_numbers=cls, num_classes=num_classes)
+    return images, cls, one_hot_encoded(
+        class_numbers=cls, num_classes=num_classes)
 
 
 import matplotlib.pyplot as plt
+
+
 def plot_images(images, cls_true, cls_pred=None, smooth=True):
 
     assert len(images) == len(cls_true) == 9
@@ -260,9 +276,8 @@ def plot_images(images, cls_true, cls_pred=None, smooth=True):
             interpolation = 'nearest'
 
         # Plot image.
-        ax.imshow(images[i, :, :, :],
-                  interpolation=interpolation)
-            
+        ax.imshow(images[i, :, :, :], interpolation=interpolation)
+
         # Name of the true class.
         cls_true_name = class_names[cls_true[i]]
 
@@ -273,26 +288,26 @@ def plot_images(images, cls_true, cls_pred=None, smooth=True):
             # Name of the predicted class.
             cls_pred_name = class_names[cls_pred[i]]
 
-            xlabel = "True: {0}\nPred: {1}".format(cls_true_name, cls_pred_name)
+            xlabel = "True: {0}\nPred: {1}".format(cls_true_name,
+                                                   cls_pred_name)
 
         # Show the classes as the label on the x-axis.
         ax.set_xlabel(xlabel)
-        
+
         # Remove ticks from the plot.
         ax.set_xticks([])
         ax.set_yticks([])
-    
+
     # Ensure the plot is shown correctly with multiple plots
     # in a single Notebook cell.
     plt.show()
+
 
 ########################################################################
 
 maybe_download_and_extract()
 images_train, cls_train, _ = load_training_data()
 images_test, cls_test, _ = load_test_data()
-
-
 
 class_names = load_class_names()
 print(class_names)
@@ -307,42 +322,50 @@ images = images_train[0:9]
 # Get the true classes for those images.
 cls_true = cls_train[0:9]
 
-
 # Extract deers and trucks
-indices_deers_and_trucks = np.where(np.logical_or(cls_train == 4, cls_train == 9))
+indices_deers_and_trucks = np.where(
+    np.logical_or(cls_train == 4, cls_train == 9))
 images_train = images_train[indices_deers_and_trucks]
 cls_train = cls_train[indices_deers_and_trucks]
 print(cls_train[0:9])
-cls_train[np.where(cls_train == 4)] = np.zeros(np.shape(np.where(cls_train == 4))[0])
-cls_train[np.where(cls_train == 9)] = np.ones(np.shape(np.where(cls_train == 9))[0])
+cls_train[np.where(cls_train == 4)] = np.zeros(
+    np.shape(np.where(cls_train == 4))[0])
+cls_train[np.where(cls_train == 9)] = np.ones(
+    np.shape(np.where(cls_train == 9))[0])
 print(cls_train[0:9])
 
-indices_deers_and_trucks = np.where(np.logical_or(cls_test == 4, cls_test == 9))
+indices_deers_and_trucks = np.where(
+    np.logical_or(cls_test == 4, cls_test == 9))
 images_test = images_test[indices_deers_and_trucks]
 cls_test = cls_test[indices_deers_and_trucks]
 print(cls_test[0:9])
-cls_test[np.where(cls_test == 4)] = np.zeros(np.shape(np.where(cls_test == 4))[0])
-cls_test[np.where(cls_test == 9)] = np.ones(np.shape(np.where(cls_test == 9))[0])
+cls_test[np.where(cls_test == 4)] = np.zeros(
+    np.shape(np.where(cls_test == 4))[0])
+cls_test[np.where(cls_test == 9)] = np.ones(
+    np.shape(np.where(cls_test == 9))[0])
 print(cls_test[0:9])
 
 # Remix the training and testing set so that students do not know what is our testing set.
-images = np.concatenate((images_train[0:8000,:,:,:], images_test, images_train[8000:,:,:,:]), axis=0)
+images = np.concatenate(
+    (images_train[0:8000, :, :, :], images_test, images_train[8000:, :, :, :]),
+    axis=0)
 cls = np.concatenate((cls_train[0:8000], cls_test, cls_train[8000:]), axis=0)
 
 n_train = 7000
 n_test = 2000
 n_test_private = 3000
 
-images_train = images[0:n_train,:,:,:]
+images_train = images[0:n_train, :, :, :]
 cls_train = cls[0:n_train]
-images_test = images[n_train:n_train+n_test,:,:,:]
-cls_test = cls[n_train:n_train+n_test]
-images_test_private = images[n_train+n_test:n_train+n_test+n_test_private,:,:,:]
-cls_test_private = cls[n_train+n_test:n_train+n_test+n_test_private]
+images_test = images[n_train:n_train + n_test, :, :, :]
+cls_test = cls[n_train:n_train + n_test]
+images_test_private = images[n_train + n_test:
+                             n_train + n_test + n_test_private, :, :, :]
+cls_test_private = cls[n_train + n_test:n_train + n_test + n_test_private]
 
-print("Training set size",np.shape(images_train))
-print("Testing set size",np.shape(images_test))
-print("Private testing set size",np.shape(images_test_private))
+print("Training set size", np.shape(images_train))
+print("Testing set size", np.shape(images_test))
+print("Private testing set size", np.shape(images_test_private))
 
 # Get the first images from the test-set.
 images = images_train[0:9]
@@ -355,14 +378,17 @@ cls_true = cls_train[0:9]
 
 #print(np.shape(images_train[0]))
 
+
 def rgb2gray(rgb):
-    return np.dot(rgb[...,:3], [0.299, 0.587, 0.114])
+    return np.dot(rgb[..., :3], [0.299, 0.587, 0.114])
+
 
 def rgbs2grays(rgbds):
-  grays = []
-  for rgb in rgbs:
-    grays.append(rgb2gray(rgb))
-  return grays
+    grays = []
+    for rgb in rgbs:
+        grays.append(rgb2gray(rgb))
+    return grays
+
 
 images_train = rgb2gray(images_train)
 images_test = rgb2gray(images_test)
@@ -373,13 +399,13 @@ data_test = {"images": images_test, "cls": cls_test}
 data_test_private = {"images": images_test_private, "cls": cls_test_private}
 
 if not os.path.exists("data/"):
-  os.makedirs("data/")
+    os.makedirs("data/")
 
 with open(r"data/deers_and_trucks", "wb") as output_file:
-  pickle.dump(data_train, output_file)
-  
+    pickle.dump(data_train, output_file)
+
 with open(r"data/deers_and_trucks_test", "wb") as output_file:
-  pickle.dump(data_test, output_file)
-  
+    pickle.dump(data_test, output_file)
+
 with open(r"/tmp/deers_and_trucks_evaluation", "wb") as output_file:
-  pickle.dump(data_test_private, output_file)
+    pickle.dump(data_test_private, output_file)

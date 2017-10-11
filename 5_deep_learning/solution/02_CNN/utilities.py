@@ -9,11 +9,13 @@
 import matplotlib.pyplot as plt
 import pickle
 
+
 def load_dataset(path):
-  with open(path, "rb") as input_file:
-    data = pickle.load(input_file)
-  print("Loaded dataset with " + str(data['images'].shape[0]) + " samples.")
-  return data['images'], data['cls']
+    with open(path, "rb") as input_file:
+        data = pickle.load(input_file)
+    print("Loaded dataset with " + str(data['images'].shape[0]) + " samples.")
+    return data['images'], data['cls']
+
 
 def plot_images(images, cls_names):
 
@@ -25,19 +27,19 @@ def plot_images(images, cls_names):
 
     for i, ax in enumerate(axes.flat):
         # Plot image.
-        ax.imshow(images[i], cmap = plt.get_cmap('gray'),
-                  interpolation='spline16')
-            
+        ax.imshow(
+            images[i], cmap=plt.get_cmap('gray'), interpolation='spline16')
+
         # Name of the true class.
         xlabel = cls_names[i]
 
         # Show the classes as the label on the x-axis.
         ax.set_xlabel(xlabel)
-        
+
         # Remove ticks from the plot.
         ax.set_xticks([])
         ax.set_yticks([])
-    
+
     # Ensure the plot is shown correctly with multiple plots
     # in a single Notebook cell.
     plt.show()

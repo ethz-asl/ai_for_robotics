@@ -18,9 +18,14 @@ import FCNetwork as network
 
 
 def parse_args():
-  parser = argparse.ArgumentParser(description='Train a simple deep NN')
-  parser.add_argument('--plot', help='Activate plotting.', action='store_true', default=False)
-  return parser.parse_args()
+    parser = argparse.ArgumentParser(description='Train a simple deep NN')
+    parser.add_argument(
+        '--plot',
+        help='Activate plotting.',
+        action='store_true',
+        default=False)
+    return parser.parse_args()
+
 
 args = parse_args()
 test_data = pkl.load(open('./data/data_test.pkl', 'rb'))
@@ -37,24 +42,31 @@ print('The classification score on the test data is {}'.format(score_test))
 
 # Visualization of classification results
 if args.plot:
-  mesh_step_size = 0.05
-  x1_min, x1_max = X_test[:, 0].min() - .5, X_test[:, 0].max() + .5
-  x2_min, x2_max = X_test[:, 1].min() - .5, X_test[:, 1].max() + .5
-  xx1, xx2 = np.meshgrid(np.arange(x1_min, x1_max, mesh_step_size), np.arange(x2_min, x2_max, mesh_step_size))
-  predicted_label = np.zeros(xx1.shape)
-  
-  for ii in range(xx1.shape[0]):
-    for jj in range(xx1.shape[1]):
-      x_query = np.array([[xx1[ii,jj], xx2[ii,jj]]])
-      y_net = fc_net.output(x_query)
-      predicted_label[ii,jj] = np.argmax(y_net)
-      
-  pl.figure('Classification result')
-  ax = pl.subplot(111)
-  ax.pcolormesh(xx1, xx2, predicted_label, cmap=pl.cm.Spectral)
-  # Plot training data
-  ax.scatter(X_test[:, 0], X_test[:, 1], c=np.argmax(labels_test, 1), cmap=pl.cm.Spectral, s=40)
-  ax.set_xlabel('x1')
-  ax.set_ylabel('x2')
+    mesh_step_size = 0.05
+    x1_min, x1_max = X_test[:, 0].min() - .5, X_test[:, 0].max() + .5
+    x2_min, x2_max = X_test[:, 1].min() - .5, X_test[:, 1].max() + .5
+    xx1, xx2 = np.meshgrid(
+        np.arange(x1_min, x1_max, mesh_step_size),
+        np.arange(x2_min, x2_max, mesh_step_size))
+    predicted_label = np.zeros(xx1.shape)
+
+    for ii in range(xx1.shape[0]):
+        for jj in range(xx1.shape[1]):
+            x_query = np.array([[xx1[ii, jj], xx2[ii, jj]]])
+            y_net = fc_net.output(x_query)
+            predicted_label[ii, jj] = np.argmax(y_net)
+
+    pl.figure('Classification result')
+    ax = pl.subplot(111)
+    ax.pcolormesh(xx1, xx2, predicted_label, cmap=pl.cm.Spectral)
+    # Plot training data
+    ax.scatter(
+        X_test[:, 0],
+        X_test[:, 1],
+        c=np.argmax(labels_test, 1),
+        cmap=pl.cm.Spectral,
+        s=40)
+    ax.set_xlabel('x1')
+    ax.set_ylabel('x2')
 
 pl.show(block=True)
