@@ -8,14 +8,16 @@ from cnn_model import CNNModel
 from utilities import load_dataset
 
 parser = argparse.ArgumentParser()
-parser.add_argument("--use_evaluation_dataset", help="use evaluation dataset",
-                    action="store_true")
+parser.add_argument(
+    "--use_evaluation_dataset",
+    help="use evaluation dataset",
+    action="store_true")
 args = parser.parse_args()
 
 if args.use_evaluation_dataset:
-  test_dataset_path = "/tmp/deers_and_trucks_evaluation"
+    test_dataset_path = "/tmp/deers_and_trucks_evaluation"
 else:
-  test_dataset_path = "data/deers_and_trucks_test"
+    test_dataset_path = "data/deers_and_trucks_test"
 
 # Load the dataset.
 images_test, cls_test = load_dataset(test_dataset_path)

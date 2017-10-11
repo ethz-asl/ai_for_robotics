@@ -18,22 +18,22 @@ class FCLayer():
     self.b = np.random.randn(1, output_size)
 
   def affinePart(self, x):
-    '''
+    """
     Get the affine part of the layer, excluding the activation function.
-    '''
+    """
     return #TODO (output dimension should be a row vector)
 
   def output(self, x):
-    '''
+    """
     Layer output. Activation function applied to affine part.
-    '''
+    """
     return #TODO
 
   def derivativeActivation(self, x):
-    '''
+    """
     Derivative of the activation function of this layer. 
     Will be required by the chain rule.
-    '''
+    """
     return self.activation_function.derivative(self.affinePart(x))
 
   def inputDimension(self):
