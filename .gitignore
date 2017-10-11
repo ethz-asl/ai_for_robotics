@@ -88,6 +88,9 @@ ENV/
 # Rope project settings
 .ropeproject
 
+# Misc
+*~
+
 .DS_Store
 5_deep_learning/02_CNN/data
 5_deep_learning/02_CNN/model
