@@ -1,10 +1,6 @@
-####################################
-# Author: Renaud Dube              #
-# Date created: 30.05.2017         #
-#                                  #
-# Date last changed: 11.10.2017    #
-# Changed by: Renaud Dube          #
-####################################
+# Copyright 2017 Mark Pfeiffer, ASL, ETH Zurich, Switzerland
+# Copyright 2017 Fadri Furrer, ASL, ETH Zurich, Switzerland
+# Copyright 2017 Renaud Dubé, ASL, ETH Zurich, Switzerland
 
 # A good introduction to TensorFlow layers and CNN can be found here: https://www.tensorflow.org/tutorials/layers
 # This exercise has been inspired by Magnus Erik Hvass Pedersen's tutorial on CNN: https://github.com/Hvass-Labs/TensorFlow-Tutorials/blob/master/02_Convolutional_Neural_Network.ipynb

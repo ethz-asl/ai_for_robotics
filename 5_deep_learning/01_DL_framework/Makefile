@@ -1,3 +1,7 @@
+# Copyright 2017 Mark Pfeiffer, ASL, ETH Zurich, Switzerland
+# Copyright 2017 Fadri Furrer, ASL, ETH Zurich, Switzerland
+# Copyright 2017 Renaud Dube, ASL, ETH Zurich, Switzerland
+
 .PHONY: generate_data, train, eval, run_tests, clean, clean_models, clean_data, distclean
 
 generate_data:

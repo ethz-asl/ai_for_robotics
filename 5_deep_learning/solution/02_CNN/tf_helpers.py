@@ -1,11 +1,6 @@
-####################################
-# Author: Renaud Dube              #
-# Date created: 30.05.2017         #
-#                                  #
-# Date last changed: 11.10.2017    #
-# Changed by: Renaud Dube          #
-####################################
-
+# Copyright 2017 Mark Pfeiffer, ASL, ETH Zurich, Switzerland
+# Copyright 2017 Fadri Furrer, ASL, ETH Zurich, Switzerland
+# Copyright 2017 Renaud Dubé, ASL, ETH Zurich, Switzerland
 
 # This file defines a few helper functions to build and optimize tensorflow graphs.
 import numpy as np
