@@ -1,3 +1,11 @@
+####################################
+# Author: Mark Pfeiffer            #
+# Date created: 30.05.2017         #
+#                                  #
+# Date last changed: 11.10.2017    #
+# Changed by: Mark Pfeiffer        #
+####################################
+
 import tensorflow as tf
 import numpy as np
 

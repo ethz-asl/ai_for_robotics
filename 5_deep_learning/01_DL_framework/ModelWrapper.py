@@ -1,3 +1,11 @@
+####################################
+# Author: Fadri Furrer             #
+# Date created: 30.05.2017         #
+#                                  #
+# Date last changed: 11.10.2017    #
+# Changed by: Mark Pfeiffer        #
+####################################
+
 import numpy as np
 import FCLayer as fc_layer
 import pickle as pkl

@@ -1,3 +1,11 @@
+####################################
+# Author: Mark Pfeiffer            #
+# Date created: 30.05.2017         #
+#                                  #
+# Date last changed: 11.10.2017    #
+# Changed by: Mark Pfeiffer        #
+####################################
+
 .PHONY: generate_data, train, eval, run_tests, clean, clean_models, clean_data, distclean
 
 generate_data:
