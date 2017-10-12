@@ -1,3 +1,9 @@
+#!/usr/bin/env python
+
+# Copyright 2017 Mark Pfeiffer, ASL, ETH Zurich, Switzerland
+# Copyright 2017 Fadri Furrer, ASL, ETH Zurich, Switzerland
+# Copyright 2017 Renaud Dubé, ASL, ETH Zurich, Switzerland
+
 import numpy as np
 import pylab as pl
 import pickle as pkl

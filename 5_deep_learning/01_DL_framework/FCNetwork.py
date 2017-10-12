@@ -1,3 +1,7 @@
+# Copyright 2017 Mark Pfeiffer, ASL, ETH Zurich, Switzerland
+# Copyright 2017 Fadri Furrer, ASL, ETH Zurich, Switzerland
+# Copyright 2017 Renaud Dubé, ASL, ETH Zurich, Switzerland
+
 import FCLayer as fc_layer
 import ActivationFunction as activation
 import LossFunction as loss
@@ -29,12 +33,12 @@ def parseLoglevel(loglevel_str):
     raise Exception('Loglevel could not be set.')
 
 class FCNetwork():
-  '''
+  """
   Fully connected neural network.
   This is creating an output from an input x through FCLayers of arbitrary
   dimensions.
   The output activation is a sigmoid activation function per default.
-  '''
+  """
   input_dim = 0
   output_dim = 0
   hidden_layer_specs = []
@@ -81,11 +85,11 @@ class FCNetwork():
 
 
   def evaluateLayer(self, idx_layer, x):
-    '''
+    """
     Evlauate single (hidden) layer of the network, given the inputs.
     idx_layer: index of layer that should be evaluated (idx = 0 means input)
     x: input data vector
-    '''
+    """
     if idx_layer == 0:
       return x
     else:
@@ -113,7 +117,7 @@ class FCNetwork():
 
 
   def gradients(self, x, loss_function, y_target):
-    '''
+    """
     Inputs: 
       x: network input 
       loss_function: Since the gradients of the loss function need to be computed, this has to be provided.
@@ -122,7 +126,7 @@ class FCNetwork():
       gradients: Gradients of the loss function w.r.t. all weights and biases of the network. 
                  Gradients have a weights and biases member, the indexing starts with 0 for the first hidden layer (W_1, b_1)
                  and ends with the output layer (W_out, b_out)
-    '''
+    """
     gradients = sup.Variables()
     
     # Outputs of each layer (layer_evaluations[0] is input x)

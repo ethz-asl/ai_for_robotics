@@ -1,3 +1,7 @@
+# Copyright 2017 Mark Pfeiffer, ASL, ETH Zurich, Switzerland
+# Copyright 2017 Fadri Furrer, ASL, ETH Zurich, Switzerland
+# Copyright 2017 Renaud Dubé, ASL, ETH Zurich, Switzerland
+
 # This file defines a few helper functions to build and optimize tensorflow graphs.
 import numpy as np
 import tensorflow as tf

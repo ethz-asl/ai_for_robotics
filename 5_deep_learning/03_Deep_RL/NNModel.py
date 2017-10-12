@@ -1,10 +1,14 @@
+# Copyright 2017 Mark Pfeiffer, ASL, ETH Zurich, Switzerland
+# Copyright 2017 Fadri Furrer, ASL, ETH Zurich, Switzerland
+# Copyright 2017 Renaud Dubé, ASL, ETH Zurich, Switzerland
+
 import tensorflow as tf
 import numpy as np
 
 class NNModel():
-  '''
+  """
   NN model for reinforcement learning that maps from state to action probabilities
-  '''
+  """
   
   def __init__(self, learning_rate=0.01):
     self.input_dim = 4 # physical state of the system [cart position, cart velocity, pole angle, pole rotational velocity]

@@ -1,3 +1,7 @@
+# Copyright 2017 Mark Pfeiffer, ASL, ETH Zurich, Switzerland
+# Copyright 2017 Fadri Furrer, ASL, ETH Zurich, Switzerland
+# Copyright 2017 Renaud Dubé, ASL, ETH Zurich, Switzerland
+ 
 import numpy as np
 import FCLayer as fc_layer
 import pickle as pkl
